@@ -12,7 +12,90 @@
 </head>
 
 <body>
-    <h1 class="banktitle">Welcome to Pioneer Bank</h1>
+    <div id="login-area">
+        <h1 class="banktitle">Welcome to Pioneer Bank</h1>
+        <div class="submit-area">
+            <h4>Login Credentials</h4>
+            <input type="text" name="" id="" class="form-control" placeholder="Email">
+            <br>
+            <input type="password" name="" id="" class="form-control" placeholder="Password">
+            <br>
+            <button id="login-btn" class="btn btn-success">Login</button>
+        </div>
+    </div>
+
+    <div id="transaction-area">
+        <div id="calculation" class="row d-flex justify-content-around">
+            <div class="col-3 bg-primary calc">
+                <h5>Deposit</h5>
+                <h2>$<span id="deposit">00</span></h2>
+            </div>
+            <div class="col-3 bg-secondary calc">
+                <h5>Withdraw</h5>
+                <h2>$<span id="withdraw">00</span></h2>
+            </div>
+            <div class="col-3 bg-danger calc">
+                <h5>Balance</h5>
+                <h2>$<span id="balance">1240</span></h2>
+            </div>
+        </div>
+        <div id="cashier" class="row d-flex justify-content-around">
+            <div class="col-5 calc2">
+                <h4>Deposit</h4>
+                <input type="number" name="" id="deposit-money" class="form-control" placeholder="$ money you want to deposit">
+                <br>
+                <button id="deposit-btn" class="btn btn-success">Deposit</button>
+            </div>
+            <div class="col-5 calc2">
+                <h4>Withdraw</h4>
+                <input type="number" name="" id="withdraw-money" class="form-control" placeholder="$ money you want to withdraw">
+                <br>
+                <button id="withdraw-btn" class="btn btn-success">Withdraw</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        var balance = document.getElementById('balance');
+        var loginBtn = document.getElementById('login-btn');
+        loginBtn.addEventListener('click', function () {
+            const loginArea = document.getElementById('login-area');
+            loginArea.style.display = 'none';
+            const transactionArea = document.getElementById('transaction-area');
+            transactionArea.style.display = 'block';
+        })
+
+        var balance = document.getElementById('balance');
+        var balanceMoney = balance.innerText;
+        balanceMoney = parseFloat(balanceMoney);
+
+        var depositButton = document.getElementById('deposit-btn');
+        depositButton.addEventListener('click', function(){
+            var depositMoney = document.getElementById('deposit-money').value;
+            var deposit = document.getElementById('deposit');
+            var depositBalance = deposit.innerText;
+            depositBalance = parseFloat(depositBalance);
+            depositMoney = parseFloat(depositMoney);
+            depositBalance = depositMoney + depositBalance;
+            balanceMoney = depositMoney + balanceMoney;
+            deposit.innerText = depositBalance;
+            balance.innerText = balanceMoney;
+        })
+
+        var withdrawButton = document.getElementById('withdraw-btn');
+        withdrawButton.addEventListener('click', function(){
+            var withdrawMoney = document.getElementById('withdraw-money').value;
+            var withdraw = document.getElementById('withdraw');
+            var withdrawBalance = withdraw.innerText;
+            withdrawBalance = parseFloat(withdrawBalance);
+            withdrawMoney = parseFloat(withdrawMoney);
+            withdrawBalance = withdrawMoney + withdrawBalance;
+            balanceMoney = balanceMoney - withdrawMoney;
+            withdraw.innerText = withdrawBalance;
+            balance.innerText = balanceMoney;
+        })
+    </script>
 </body>
 
 </html>
