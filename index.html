@@ -57,6 +57,7 @@
     </div>
 
     <script>
+        //login area code
         var balance = document.getElementById('balance');
         var loginBtn = document.getElementById('login-btn');
         loginBtn.addEventListener('click', function () {
@@ -66,30 +67,43 @@
             transactionArea.style.display = 'block';
         })
 
+        //universal use balance code
+
         var balance = document.getElementById('balance');
         var balanceMoney = balance.innerText;
         balanceMoney = parseFloat(balanceMoney);
 
+        //function to catch input numbers
+
+        function amountNumber(id){
+            var amountValue = document.getElementById(id).value;
+            amountNum = parseFloat(amountValue);
+            document.getElementById(id).value = '';
+            return amountNum;
+        }
+
+        //deposit amount code
+
         var depositButton = document.getElementById('deposit-btn');
         depositButton.addEventListener('click', function(){
-            var depositMoney = document.getElementById('deposit-money').value;
+            var depositMoney = amountNumber('deposit-money');
             var deposit = document.getElementById('deposit');
             var depositBalance = deposit.innerText;
             depositBalance = parseFloat(depositBalance);
-            depositMoney = parseFloat(depositMoney);
             depositBalance = depositMoney + depositBalance;
             balanceMoney = depositMoney + balanceMoney;
             deposit.innerText = depositBalance;
             balance.innerText = balanceMoney;
         })
 
+        //withdraw amount code
+
         var withdrawButton = document.getElementById('withdraw-btn');
         withdrawButton.addEventListener('click', function(){
-            var withdrawMoney = document.getElementById('withdraw-money').value;
+            var withdrawMoney = amountNumber('withdraw-money');
             var withdraw = document.getElementById('withdraw');
             var withdrawBalance = withdraw.innerText;
             withdrawBalance = parseFloat(withdrawBalance);
-            withdrawMoney = parseFloat(withdrawMoney);
             withdrawBalance = withdrawMoney + withdrawBalance;
             balanceMoney = balanceMoney - withdrawMoney;
             withdraw.innerText = withdrawBalance;
